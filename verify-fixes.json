@@ -1,0 +1,67 @@
+[
+  {
+    "name": "可视化条位于控件区下方（不再压在按键上）",
+    "ok": true,
+    "detail": "viz.top=674 inner.bottom=674"
+  },
+  {
+    "name": "可视化条与控件区无重叠",
+    "ok": true,
+    "detail": "overlapInner=false overlapPlay=false"
+  },
+  {
+    "name": "可视化条贴在播放栏底部",
+    "ok": true,
+    "detail": "viz.bottom=720 bar.bottom=720"
+  },
+  {
+    "name": "可视化条已改为正常文档流（非绝对定位背景）",
+    "ok": true,
+    "detail": "position=relative"
+  },
+  {
+    "name": "播放栏不再裁切溢出内容（overflow≠hidden）",
+    "ok": true,
+    "detail": "overflow=visible"
+  },
+  {
+    "name": "音量浮层可展开（is-open 且 pointer-events:auto）",
+    "ok": true,
+    "detail": "pointer-events=auto"
+  },
+  {
+    "name": "音量浮层最终可见（opacity 收敛到 1）",
+    "ok": true,
+    "detail": "opacity=1"
+  },
+  {
+    "name": "音量浮层完整位于视口内",
+    "ok": true,
+    "detail": "top=544 178x48"
+  },
+  {
+    "name": "音量浮层向上溢出播放栏（未被裁切）",
+    "ok": true,
+    "detail": "flyout.top=544 bar.top=567"
+  },
+  {
+    "name": "音量浮层位于最上层（命中测试）",
+    "ok": true,
+    "detail": "pointer-events=auto"
+  },
+  {
+    "name": "悬停音量图标出现文字提示",
+    "ok": true,
+    "detail": "\"音量 80%（点击静音 · M）\""
+  },
+  {
+    "name": "提示层 portal 挂在 body、fixed 且高层级",
+    "ok": true,
+    "detail": "z=99999 pos=fixed inView=true"
+  },
+  {
+    "name": "播放器按钮普遍带提示文案",
+    "ok": true,
+    "detail": "20 个可提示元素，例如：亚克力模糊已启用 / 可视化：频谱 / 窗口置顶 / 迷你模式"
+  }
+]

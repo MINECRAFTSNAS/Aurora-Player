@@ -1,0 +1,67 @@
+[
+  {
+    "name": "应用启动",
+    "ok": true,
+    "detail": "Aurora Player"
+  },
+  {
+    "name": "启动时从音乐库读出歌曲",
+    "ok": true,
+    "detail": "2 首：lib-a, lib-b"
+  },
+  {
+    "name": "列表计数与歌曲数一致",
+    "ok": true,
+    "detail": "badge=2"
+  },
+  {
+    "name": "拖入的文件出现在歌单里",
+    "ok": true,
+    "detail": "行数 2 → 3"
+  },
+  {
+    "name": "拖入的库外文件被复制进音乐库",
+    "ok": true,
+    "detail": "库内 2 → 3 个文件"
+  },
+  {
+    "name": "复制后原文件仍在（是复制不是移动）",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "Ctrl+点击可多选",
+    "ok": true,
+    "detail": "选中 2 行"
+  },
+  {
+    "name": "出现多选状态条",
+    "ok": true,
+    "detail": "已选 2 首全选取消选择按 Delete 删除（同时删除文件）"
+  },
+  {
+    "name": "普通点击会清空选择",
+    "ok": true,
+    "detail": "剩余选中 0"
+  },
+  {
+    "name": "再次多选用于删除",
+    "ok": true,
+    "detail": "选中 2 行"
+  },
+  {
+    "name": "Delete 键移除了选中的行",
+    "ok": true,
+    "detail": "行数 3 → 1"
+  },
+  {
+    "name": "同时删除了音乐库里的文件",
+    "ok": true,
+    "detail": "库内文件 3 → 1"
+  },
+  {
+    "name": "频谱只向上生长（上半区明显少于下半区）",
+    "ok": true,
+    "detail": "SKIP: 画布为空（可能未开始播放）"
+  }
+]

@@ -1,0 +1,397 @@
+/* ============================================================
+   Win11 同款控件：圆角按钮 / 滑块 / 开关 / 分段控件
+   参考 Fluent 2 规范：
+   - 标准按钮 圆角 4px，悬停填充 +8%，按下文字转 70% 不透明
+   - 圆形按钮（传输控件）完全圆形，强调色
+   ============================================================ */
+
+/* ---------------- 标准圆角按钮（4px） ---------------- */
+.btn {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 32px;
+  padding: 0 12px;
+  border: 1px solid var(--ctrl-stroke);
+  border-bottom-color: rgba(255, 255, 255, 0.06);
+  border-radius: var(--r-sm);
+  background: var(--ctrl-fill);
+  color: var(--text-primary);
+  font: inherit;
+  font-size: 14px;
+  cursor: pointer;
+  transition:
+    background-color var(--dur-fast) var(--ease-fluent),
+    border-color var(--dur-fast) var(--ease-fluent),
+    color var(--dur-fast) var(--ease-fluent),
+    transform var(--dur-fast) var(--ease-fluent);
+}
+.btn:hover:not(:disabled) {
+  background: var(--ctrl-fill-hover);
+}
+.btn:active:not(:disabled) {
+  background: var(--ctrl-fill-active);
+  color: var(--text-secondary);
+  transform: scale(0.98);
+}
+.btn:disabled {
+  background: var(--ctrl-fill-disabled);
+  color: var(--text-disabled);
+  border-color: rgba(255, 255, 255, 0.06);
+  cursor: default;
+}
+
+.btn--accent {
+  background: var(--accent);
+  border-color: rgba(255, 255, 255, 0.12);
+  color: #06232e;
+  font-weight: 600;
+}
+.btn--accent:hover:not(:disabled) {
+  background: #62cbff;
+}
+.btn--accent:active:not(:disabled) {
+  background: var(--accent-strong);
+  color: rgba(6, 35, 46, 0.7);
+}
+
+.btn--ghost {
+  background: transparent;
+  border-color: transparent;
+}
+.btn--ghost:hover:not(:disabled) {
+  background: var(--ctrl-fill);
+}
+
+.btn--subtle {
+  background: transparent;
+  border-color: transparent;
+  min-height: 30px;
+  padding: 0 10px;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+.btn--subtle:hover:not(:disabled) {
+  background: var(--ctrl-fill);
+  color: var(--text-primary);
+}
+
+/* ---------------- 圆形图标按钮（传输控件） ---------------- */
+.icon-btn {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  flex: 0 0 auto;
+  border: 1px solid transparent;
+  border-radius: var(--r-circular);
+  background: transparent;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition:
+    background-color var(--dur-fast) var(--ease-fluent),
+    color var(--dur-fast) var(--ease-fluent),
+    transform var(--dur-normal) var(--ease-decel),
+    border-color var(--dur-fast) var(--ease-fluent);
+}
+.icon-btn:hover:not(:disabled) {
+  background: var(--ctrl-fill-hover);
+}
+.icon-btn:active:not(:disabled) {
+  background: var(--ctrl-fill-active);
+  color: var(--text-secondary);
+  transform: scale(0.94);
+}
+.icon-btn:disabled {
+  color: var(--text-disabled);
+  cursor: default;
+}
+.icon-btn[aria-pressed='true'] {
+  background: var(--accent-soft);
+  border-color: rgba(76, 194, 255, 0.3);
+  color: var(--accent);
+}
+
+/* 主播放键：48px 圆形强调色 */
+.icon-btn--primary {
+  width: 48px;
+  height: 48px;
+  background: var(--accent);
+  color: #06232e;
+  box-shadow: var(--shadow-8);
+}
+.icon-btn--primary:hover:not(:disabled) {
+  background: #62cbff;
+  transform: scale(1.04);
+}
+.icon-btn--primary:active:not(:disabled) {
+  background: var(--accent-strong);
+  transform: scale(0.96);
+}
+
+/* 次级传输键：40px */
+.icon-btn--transport {
+  width: 40px;
+  height: 40px;
+}
+
+/* ---------------- 标题栏按钮（Win11 悬停色块） ---------------- */
+.caption-btn {
+  appearance: none;
+  width: 46px;
+  height: var(--titlebar-h);
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  color: var(--text-primary);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color var(--dur-fast) var(--ease-fluent);
+}
+.caption-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+.caption-btn:active {
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-secondary);
+}
+.caption-btn--close:hover {
+  background: #c42b1c;
+  color: #fff;
+}
+.caption-btn--close:active {
+  background: #b0241a;
+}
+
+/* ---------------- 滑块（Win11 内嵌轨道 + 圆形拇指） ---------------- */
+.slider {
+  --pct: 0%;
+  --thumb: 20px;
+  --track: 4px;
+  appearance: none;
+  width: 100%;
+  height: 28px;
+  background: transparent;
+  cursor: pointer;
+  display: block;
+  padding: 0;
+  margin: 0;
+}
+.slider::-webkit-slider-runnable-track {
+  height: var(--track);
+  border-radius: var(--r-circular);
+  /* 已播放部分用强调色，剩余部分用"Win11 控件描边色" */
+  background: linear-gradient(
+    to right,
+    var(--accent) 0%,
+    var(--accent) var(--pct),
+    rgba(255, 255, 255, 0.22) var(--pct),
+    rgba(255, 255, 255, 0.22) 100%
+  );
+}
+.slider::-webkit-slider-thumb {
+  appearance: none;
+  width: var(--thumb);
+  height: var(--thumb);
+  margin-top: calc((var(--track) - var(--thumb)) / 2);
+  border-radius: var(--r-circular);
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  transition:
+    transform var(--dur-fast) var(--ease-fluent),
+    width var(--dur-fast) var(--ease-fluent),
+    height var(--dur-fast) var(--ease-fluent),
+    margin-top var(--dur-fast) var(--ease-fluent);
+}
+.slider:hover::-webkit-slider-thumb {
+  --thumb: 14px;
+  margin-top: calc((var(--track) - 14px) / 2);
+}
+.slider:active::-webkit-slider-thumb {
+  --thumb: 12px;
+  margin-top: calc((var(--track) - 12px) / 2);
+}
+.slider:disabled {
+  cursor: default;
+  opacity: 0.4;
+}
+.slider:disabled::-webkit-slider-thumb {
+  background: var(--text-disabled);
+}
+
+.slider--sm {
+  --thumb: 16px;
+  --track: 4px;
+}
+.slider--sm:hover::-webkit-slider-thumb {
+  --thumb: 12px;
+  margin-top: calc((var(--track) - 12px) / 2);
+}
+
+/* ---------------- 开关（Win11 ToggleSwitch） ---------------- */
+.toggle {
+  appearance: none;
+  position: relative;
+  width: 40px;
+  height: 20px;
+  flex: 0 0 auto;
+  border: 1px solid var(--ctrl-stroke-strong);
+  border-radius: var(--r-circular);
+  background: rgba(255, 255, 255, 0.06);
+  cursor: pointer;
+  transition:
+    background-color var(--dur-normal) var(--ease-fluent),
+    border-color var(--dur-normal) var(--ease-fluent);
+}
+.toggle::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 3px;
+  width: 12px;
+  height: 12px;
+  border-radius: var(--r-circular);
+  background: var(--text-primary);
+  transform: translateY(-50%);
+  transition:
+    left var(--dur-normal) var(--ease-decel),
+    width var(--dur-fast) var(--ease-fluent),
+    background-color var(--dur-normal) var(--ease-fluent);
+}
+.toggle:hover::after {
+  width: 14px;
+}
+.toggle:checked {
+  background: var(--accent);
+  border-color: rgba(255, 255, 255, 0.16);
+}
+.toggle:checked::after {
+  left: 23px;
+  background: #06232e;
+}
+.toggle:checked:hover::after {
+  left: 21px;
+  width: 14px;
+}
+
+/* ---------------- 分段控件（播放模式选择） ---------------- */
+.segment {
+  display: inline-flex;
+  padding: 2px;
+  gap: 2px;
+  border-radius: var(--r-md);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--ctrl-stroke);
+}
+.segment__item {
+  appearance: none;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  border-radius: var(--r-sm);
+  min-width: 32px;
+  height: 26px;
+  padding: 0 8px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    background-color var(--dur-fast) var(--ease-fluent),
+    color var(--dur-fast) var(--ease-fluent);
+}
+.segment__item:hover {
+  background: var(--ctrl-fill-hover);
+  color: var(--text-primary);
+}
+.segment__item[aria-pressed='true'] {
+  background: var(--ctrl-fill-hover);
+  color: var(--text-primary);
+  box-shadow: var(--shadow-2);
+}
+
+/* ---------------- 输入框 ---------------- */
+.input {
+  appearance: none;
+  width: 100%;
+  height: 32px;
+  padding: 0 10px;
+  border: 1px solid var(--ctrl-stroke);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: var(--r-sm);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-primary);
+  font: inherit;
+  font-size: 13px;
+  user-select: text;
+  transition:
+    border-color var(--dur-fast) var(--ease-fluent),
+    background-color var(--dur-fast) var(--ease-fluent);
+}
+.input::placeholder {
+  color: var(--text-tertiary);
+}
+.input:hover {
+  background: rgba(255, 255, 255, 0.07);
+}
+.input:focus {
+  outline: none;
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 0;
+}
+
+/* ---------------- 卡片（亚克力上的玻璃片） ---------------- */
+.card {
+  background: var(--card);
+  border: 1px solid var(--card-stroke);
+  border-radius: var(--r-lg);
+  backdrop-filter: blur(24px) saturate(140%);
+  -webkit-backdrop-filter: blur(24px) saturate(140%);
+}
+
+/* ---------------- 工具提示 ----------------
+   提示由 TooltipLayer 渲染到 body 的 portal（position: fixed）。
+   不再用 ::after —— 播放栏/列表的 overflow 会把伪元素裁掉，
+   表现为"提示不出现"。.tip 仅作标记类。       */
+.tip {
+  position: relative;
+}
+
+.aurora-tooltip {
+  position: fixed;
+  z-index: 99999;
+  padding: 5px 9px;
+  border-radius: var(--r-sm);
+  background: rgba(32, 34, 40, 0.97);
+  border: 1px solid var(--card-stroke);
+  box-shadow: var(--shadow-8);
+  color: var(--text-primary);
+  font-size: 12px;
+  line-height: 1.35;
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+  animation: tipIn 120ms var(--ease-decel);
+}
+@keyframes tipIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

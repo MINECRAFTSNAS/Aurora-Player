@@ -1,0 +1,1050 @@
+/* ============================================================
+   布局
+   ============================================================ */
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  position: relative;
+}
+.app--mini {
+  /* 迷你模式：只有标题栏 + 曲目信息 + 播放栏 */
+}
+
+/* ---------------- 标题栏 ---------------- */
+.titlebar {
+  display: flex;
+  align-items: center;
+  height: var(--titlebar-h);
+  flex: 0 0 var(--titlebar-h);
+  padding-left: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.015));
+}
+
+.titlebar__brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  padding-right: 12px;
+}
+
+.titlebar__mark {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  flex: 0 0 auto;
+  border-radius: var(--r-sm);
+  background: linear-gradient(140deg, var(--accent), #a06cff);
+  color: #06232e;
+  box-shadow: var(--shadow-2);
+  transition: transform var(--dur-slow) var(--ease-decel);
+}
+.titlebar__mark.is-playing {
+  animation: markPulse 2.4s var(--ease-fluent) infinite;
+}
+@keyframes markPulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08);
+  }
+}
+
+.titlebar__text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  line-height: 1.15;
+}
+.titlebar__title {
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+.titlebar__subtitle {
+  font-size: 11px;
+  color: var(--text-tertiary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 320px;
+}
+
+.titlebar__spacer {
+  flex: 1 1 auto;
+  height: 100%;
+  min-width: 20px;
+}
+
+.titlebar__actions {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding-right: 4px;
+}
+.icon-btn--sm {
+  width: 32px;
+  height: 32px;
+}
+.icon-btn--sm.is-on {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.caption {
+  display: flex;
+  align-items: stretch;
+  height: 100%;
+}
+
+/* ---------------- 内容区 ---------------- */
+.content {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px 14px 8px;
+}
+
+/* ---------------- URL 导入条 ---------------- */
+.urlbar {
+  flex: 0 0 auto;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.urlbar__row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.urlbar__row--secondary {
+  gap: 4px;
+}
+.urlbar__icon {
+  color: var(--accent);
+  flex: 0 0 auto;
+}
+.urlbar__input {
+  flex: 1 1 auto;
+}
+.urlbar__spacer {
+  flex: 1 1 auto;
+}
+/* 让"可拖放"这件事在界面上看得见，而不是只写在空列表提示里 */
+.urlbar__drag-hint {
+  font-size: 11.5px;
+  color: var(--text-tertiary);
+  white-space: nowrap;
+  padding-left: 4px;
+}
+.urlbar__presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding-top: 2px;
+}
+.chip {
+  appearance: none;
+  border: 1px solid var(--ctrl-stroke);
+  background: var(--ctrl-fill);
+  color: var(--text-secondary);
+  font: inherit;
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: var(--r-circular);
+  cursor: pointer;
+  transition:
+    background-color var(--dur-fast) var(--ease-fluent),
+    color var(--dur-fast) var(--ease-fluent);
+}
+.chip:hover {
+  background: var(--ctrl-fill-hover);
+  color: var(--text-primary);
+}
+.urlbar__msg {
+  font-size: 12px;
+  padding: 6px 9px;
+  border-radius: var(--r-sm);
+  border: 1px solid transparent;
+}
+.urlbar__msg--ok {
+  color: #7ee2a8;
+  background: rgba(126, 226, 168, 0.1);
+  border-color: rgba(126, 226, 168, 0.24);
+}
+.urlbar__msg--err {
+  color: #ff9a8f;
+  background: rgba(255, 122, 108, 0.1);
+  border-color: rgba(255, 122, 108, 0.24);
+}
+.urlbar__msg--info {
+  color: var(--text-secondary);
+  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--card-stroke);
+}
+
+/* ---------------- 播放列表 ---------------- */
+.playlist {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.playlist__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 9px 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+.playlist__title {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  font-weight: 600;
+}
+.playlist__total {
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--text-tertiary);
+}
+/* 多选状态条 */
+.playlist__selbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  font-size: 12px;
+  color: var(--text-primary);
+  background: rgba(160, 108, 255, 0.13);
+  border-bottom: 1px solid rgba(160, 108, 255, 0.28);
+}
+.playlist__selbar .btn--sm {
+  min-height: 24px;
+  padding: 0 8px;
+}
+.playlist__selhint {
+  margin-left: auto;
+  font-size: 11px;
+  color: var(--text-tertiary);
+}
+.badge {
+  display: inline-grid;
+  place-items: center;
+  min-width: 20px;
+  height: 18px;
+  padding: 0 6px;
+  border-radius: var(--r-circular);
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 600;
+}
+.playlist__tools {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.playlist__search {
+  position: relative;
+  padding: 8px 12px 4px;
+}
+.playlist__search-icon {
+  position: absolute;
+  left: 22px;
+  top: 50%;
+  transform: translateY(-40%);
+  color: var(--text-tertiary);
+  pointer-events: none;
+}
+.playlist__input {
+  padding-left: 30px;
+  height: 30px;
+}
+.playlist__clear-q {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-40%);
+  width: 20px;
+  height: 20px;
+  border: none;
+  border-radius: var(--r-circular);
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1;
+  display: grid;
+  place-items: center;
+}
+.playlist__clear-q:hover {
+  background: rgba(255, 255, 255, 0.16);
+  color: var(--text-primary);
+}
+
+.playlist__list {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 4px 6px 8px;
+  scroll-behavior: smooth;
+}
+
+.playlist__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 100%;
+  min-height: 160px;
+  color: var(--text-tertiary);
+  text-align: center;
+  padding: 20px;
+}
+.playlist__empty p {
+  margin: 0;
+  font-size: 13px;
+}
+.playlist__empty-hint {
+  font-size: 12px !important;
+  color: var(--text-disabled);
+  max-width: 340px;
+  line-height: 1.5;
+}
+.playlist__empty-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+/* ---------------- 曲目行 ---------------- */
+.track {
+  display: flex;
+  align-items: center;
+  border-radius: var(--r-md);
+  transition: background-color var(--dur-fast) var(--ease-fluent);
+}
+.track:hover {
+  background: var(--layer-hover);
+}
+.track.is-active {
+  background: var(--accent-soft);
+  box-shadow: inset 2px 0 0 var(--accent);
+}
+.track.is-active:hover {
+  background: rgba(76, 194, 255, 0.24);
+}
+/* 多选状态：与"正在播放"区分开（播放是蓝底，选中是描边+浅底） */
+.track.is-selected {
+  background: rgba(160, 108, 255, 0.14);
+  box-shadow: inset 0 0 0 1px rgba(160, 108, 255, 0.45);
+}
+.track.is-selected:hover {
+  background: rgba(160, 108, 255, 0.2);
+}
+.track.is-selected.is-active {
+  background: rgba(120, 160, 255, 0.2);
+  box-shadow:
+    inset 2px 0 0 var(--accent),
+    inset 0 0 0 1px rgba(160, 108, 255, 0.5);
+}
+
+.track__main {
+  appearance: none;
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 8px 7px 10px;
+  border: none;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  border-radius: var(--r-md);
+}
+.track__main:active {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.track__index {
+  width: 22px;
+  flex: 0 0 auto;
+  font-size: 11px;
+  color: var(--text-tertiary);
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+}
+.track.is-active .track__index {
+  color: var(--accent);
+}
+
+/* 播放中均衡器动画 */
+.track__eq {
+  display: inline-flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 2px;
+  height: 12px;
+}
+.track__eq i {
+  display: block;
+  width: 2px;
+  height: 4px;
+  border-radius: 1px;
+  background: var(--accent);
+}
+.track__eq.is-playing i {
+  animation: eq 900ms ease-in-out infinite;
+}
+.track__eq.is-playing i:nth-child(2) {
+  animation-delay: 150ms;
+}
+.track__eq.is-playing i:nth-child(3) {
+  animation-delay: 300ms;
+}
+@keyframes eq {
+  0%,
+  100% {
+    height: 3px;
+  }
+  50% {
+    height: 12px;
+  }
+}
+
+.track__cover {
+  width: 32px;
+  height: 32px;
+  flex: 0 0 auto;
+  border-radius: var(--r-sm);
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  display: grid;
+  place-items: center;
+  color: var(--text-tertiary);
+}
+.track__cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.track__meta {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+.track__name {
+  font-size: 13px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.track.is-active .track__name {
+  color: var(--accent);
+  font-weight: 600;
+}
+.track__sub {
+  font-size: 11.5px;
+  color: var(--text-tertiary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.track__dur {
+  flex: 0 0 auto;
+  font-size: 11.5px;
+  color: var(--text-tertiary);
+  font-variant-numeric: tabular-nums;
+  padding-left: 6px;
+}
+
+.track__remove {
+  appearance: none;
+  flex: 0 0 auto;
+  width: 28px;
+  height: 28px;
+  margin-right: 6px;
+  border: none;
+  border-radius: var(--r-circular);
+  background: transparent;
+  color: var(--text-tertiary);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  opacity: 0;
+  transition:
+    opacity var(--dur-fast) var(--ease-fluent),
+    background-color var(--dur-fast) var(--ease-fluent),
+    color var(--dur-fast) var(--ease-fluent);
+}
+.track:hover .track__remove {
+  opacity: 1;
+}
+.track__remove:hover {
+  background: rgba(255, 122, 108, 0.16);
+  color: #ff9a8f;
+}
+
+/* ---------------- 播放栏 ---------------- */
+.playerbar {
+  position: relative;
+  /* 必须能"溢出"：音量浮层和悬停提示都向上弹出，
+     之前这里的 overflow:hidden 会把它们整个裁掉（表现为"被背景挡住"）。 */
+  z-index: 30;
+  flex: 0 0 auto;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.015));
+}
+
+/* 可视化条：播放栏最底部的独立一条，不再覆盖按键 */
+.playerbar__viz {
+  position: relative;
+  height: auto;
+  padding: 0 16px 8px;
+  opacity: 0.9;
+  pointer-events: none;
+  /* 顶部淡入，避免与控件区视觉粘连 */
+  mask-image: linear-gradient(180deg, transparent 0%, #000 45%, #000 100%);
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 45%, #000 100%);
+}
+.viz {
+  position: relative;
+  width: 100%;
+}
+.viz__canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.viz--both {
+  display: flex;
+  flex-direction: column;
+}
+.viz--both .viz__canvas--wave {
+  flex: 0 0 34%;
+}
+.viz--both .viz__canvas--bars {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.playerbar__inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(180px, 1fr) minmax(320px, 2.1fr) minmax(180px, 1fr);
+  align-items: center;
+  gap: 14px;
+  padding: 12px 16px 14px;
+}
+
+/* 当前曲目 */
+.nowplaying {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  min-width: 0;
+}
+.nowplaying__cover {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  flex: 0 0 auto;
+  border-radius: var(--r-md);
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  box-shadow: var(--shadow-8);
+  display: grid;
+  place-items: center;
+}
+.nowplaying__cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.nowplaying__cover-fallback {
+  color: var(--text-tertiary);
+}
+.nowplaying__pulse {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 1px rgba(76, 194, 255, 0.4);
+  animation: coverPulse 2.6s var(--ease-fluent) infinite;
+}
+@keyframes coverPulse {
+  0%,
+  100% {
+    box-shadow: inset 0 0 0 1px rgba(76, 194, 255, 0.25);
+  }
+  50% {
+    box-shadow: inset 0 0 0 1px rgba(76, 194, 255, 0.7);
+  }
+}
+.nowplaying__text {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.nowplaying__title {
+  font-size: 13.5px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.nowplaying__sub {
+  font-size: 11.5px;
+  color: var(--text-tertiary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.nowplaying__error {
+  color: #ff9a8f;
+}
+
+/* 传输控件 */
+.transport {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  min-width: 0;
+}
+.transport__row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.progress {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  width: 100%;
+}
+.progress__time {
+  font-size: 11px;
+  color: var(--text-tertiary);
+  font-variant-numeric: tabular-nums;
+  min-width: 36px;
+  text-align: right;
+}
+.progress__time--total {
+  text-align: left;
+}
+.progress__track-wrap {
+  position: relative;
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+}
+.progress__buffer {
+  position: absolute;
+  left: 0;
+  height: 4px;
+  border-radius: var(--r-circular);
+  background: rgba(255, 255, 255, 0.14);
+  pointer-events: none;
+  transition: width 200ms linear;
+}
+.progress__slider {
+  position: relative;
+  z-index: 1;
+  background: transparent;
+}
+
+/* 右侧控件 */
+.controls-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  min-width: 0;
+}
+
+.volume {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.volume__flyout {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 10px);
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 9px 12px;
+  width: 178px;
+  opacity: 0;
+  transform: translateY(6px) scale(0.97);
+  pointer-events: none;
+  transform-origin: bottom right;
+  transition:
+    opacity var(--dur-normal) var(--ease-fluent),
+    transform var(--dur-normal) var(--ease-decel);
+  box-shadow: var(--shadow-16);
+  z-index: 40;
+}
+.volume__flyout.is-open {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+.volume__slider {
+  flex: 1 1 auto;
+}
+.volume__val {
+  font-size: 11px;
+  color: var(--text-tertiary);
+  font-variant-numeric: tabular-nums;
+  min-width: 24px;
+  text-align: right;
+}
+
+/* 加载旋转 */
+.spin {
+  display: inline-grid;
+  place-items: center;
+  animation: spin 900ms linear infinite;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ---------------- 迷你模式 ---------------- */
+.mini-info {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 14px;
+  text-align: center;
+}
+.mini-info__title {
+  font-size: 15px;
+  font-weight: 600;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.mini-info__sub {
+  font-size: 12px;
+  color: var(--text-tertiary);
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.app--mini .playerbar__inner {
+  grid-template-columns: 1fr;
+  gap: 8px;
+  padding: 10px 14px 12px;
+}
+.app--mini .nowplaying,
+.app--mini .controls-right {
+  display: none;
+}
+/* 迷你模式尽量矮，隐藏可视化条 */
+.app--mini .playerbar__viz {
+  display: none;
+}
+.app--mini .playlist,
+.app--mini .urlbar {
+  display: none;
+}
+
+/* ---------------- 拖放遮罩 ---------------- */
+.dropzone {
+  position: absolute;
+  inset: 0;
+  z-index: 60;
+  display: grid;
+  place-items: center;
+  background: rgba(10, 12, 16, 0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  animation: fadeIn var(--dur-normal) var(--ease-fluent);
+}
+.dropzone__card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 30px 44px;
+  border: 1px dashed rgba(76, 194, 255, 0.55);
+  box-shadow: var(--shadow-16);
+  animation: popIn var(--dur-slow) var(--ease-decel);
+}
+.dropzone__icon {
+  color: var(--accent);
+}
+.dropzone__text {
+  font-size: 15px;
+  font-weight: 600;
+}
+.dropzone__hint {
+  font-size: 12px;
+  color: var(--text-tertiary);
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: scale(0.94) translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* ---------------- 轻提示 ---------------- */
+.toast {
+  position: absolute;
+  left: 50%;
+  bottom: calc(var(--player-h) + 22px);
+  transform: translateX(-50%);
+  padding: 9px 16px;
+  font-size: 12.5px;
+  box-shadow: var(--shadow-16);
+  z-index: 55;
+  animation: toastIn var(--dur-slow) var(--ease-decel);
+  pointer-events: none;
+  max-width: 70%;
+  text-align: center;
+}
+@keyframes toastIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* ---------------- 设置面板 ---------------- */
+.settings-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 70;
+  display: flex;
+  justify-content: flex-end;
+  background: rgba(8, 10, 14, 0.42);
+  animation: fadeIn var(--dur-normal) var(--ease-fluent);
+}
+.settings {
+  width: min(400px, 92%);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 0;
+  border-right: none;
+  border-top: none;
+  border-bottom: none;
+  background: rgba(22, 25, 32, 0.72);
+  backdrop-filter: blur(40px) saturate(150%);
+  -webkit-backdrop-filter: blur(40px) saturate(150%);
+  animation: slideIn var(--dur-slow) var(--ease-decel);
+  box-shadow: var(--shadow-16);
+}
+@keyframes slideIn {
+  from {
+    transform: translateX(24px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+.settings__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+.settings__head h2 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+.settings__body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 14px 16px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.settings__section-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  margin-top: 6px;
+}
+.settings__field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.settings__field label {
+  font-size: 12.5px;
+  color: var(--text-secondary);
+}
+.settings__field--row {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+/* 音乐库路径 */
+.settings__dir {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.settings__path {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 6px 9px;
+  border-radius: var(--r-sm);
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--card-stroke);
+  font-family: 'Cascadia Mono', Consolas, monospace;
+  font-size: 11.5px;
+  color: var(--text-secondary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  user-select: text;
+}
+.settings__hint {
+  margin: -2px 0 2px;
+  font-size: 11.5px;
+  line-height: 1.55;
+  color: var(--text-tertiary);
+}
+.settings__val {
+  color: var(--text-tertiary);
+  font-variant-numeric: tabular-nums;
+}
+.settings__keys {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+.settings__keys li {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+kbd {
+  display: inline-grid;
+  place-items: center;
+  min-width: 22px;
+  padding: 2px 5px;
+  border: 1px solid var(--ctrl-stroke);
+  border-bottom-width: 2px;
+  border-radius: var(--r-sm);
+  background: rgba(255, 255, 255, 0.06);
+  font-family: inherit;
+  font-size: 11px;
+  color: var(--text-primary);
+}
+.settings__about {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 12px;
+}
+.settings__about-row {
+  display: flex;
+  justify-content: space-between;
+  color: var(--text-tertiary);
+}
+.settings__about-row span:last-child {
+  color: var(--text-secondary);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.settings__about-row .is-ok {
+  color: #7ee2a8;
+}
+.settings__about-row .is-warn {
+  color: #ffc46b;
+}
+
+/* ---------------- 窄窗口自适应 ---------------- */
+@media (max-width: 980px) {
+  .playerbar__inner {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .nowplaying {
+    justify-content: center;
+  }
+  .nowplaying__text {
+    align-items: center;
+  }
+  .controls-right {
+    justify-content: center;
+  }
+  .viz--bars .viz__canvas {
+    height: 56px;
+  }
+}

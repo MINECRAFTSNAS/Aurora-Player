@@ -1,0 +1,132 @@
+[
+  {
+    "name": "主进程创建窗口",
+    "ok": true,
+    "detail": "1 个窗口"
+  },
+  {
+    "name": "preload API 注入",
+    "ok": true,
+    "detail": "30 个方法"
+  },
+  {
+    "name": "标题栏 + 3 个窗口按钮",
+    "ok": true,
+    "detail": "3 个"
+  },
+  {
+    "name": "Win11 圆角按钮",
+    "ok": true,
+    "detail": "9 个 icon-btn"
+  },
+  {
+    "name": "URL 导入栏",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "播放列表区域",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "进度/音量滑块",
+    "ok": true,
+    "detail": "2 个 range"
+  },
+  {
+    "name": "频谱画布",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "播放模式分段控件",
+    "ok": true,
+    "detail": "4 项"
+  },
+  {
+    "name": "亚克力材质令牌",
+    "ok": true,
+    "detail": "material=acrylic"
+  },
+  {
+    "name": "毛玻璃渐变生效",
+    "ok": true,
+    "detail": "radial-gradient(120% 90% at 12% 0%, rgba(76, 194, 255, 0.13)"
+  },
+  {
+    "name": "界面文案渲染",
+    "ok": true,
+    "detail": "Aurora Player | 未在播放 | 检测 | 导入链接 | 导入音乐文件 | 导入整个文件夹 | 也可以直接把文件 / 文件夹拖进窗口 | 网络电台示例 ▼ | 播放列表"
+  },
+  {
+    "name": "Win11 窗口圆角已生效",
+    "ok": true,
+    "detail": "DWMWA_WINDOW_CORNER_PREFERENCE = 2 (2 = DWMWCP_ROUND)"
+  },
+  {
+    "name": "深色标题栏已启用",
+    "ok": true,
+    "detail": "DWMWA_USE_IMMERSIVE_DARK_MODE = 1"
+  },
+  {
+    "name": "DWM 背景材质已设置",
+    "ok": true,
+    "detail": "DWMWA_SYSTEMBACKDROP_TYPE = 3 (2=Mica 3=Acrylic 1=None)"
+  },
+  {
+    "name": "本地文件导入（真实 IPC + 元数据解析）",
+    "ok": true,
+    "detail": "aurora-smoke-tone · undefineds · src=file:///C:/Users/Administrator…"
+  },
+  {
+    "name": "音频解码并播放",
+    "ok": true,
+    "detail": "已播放 0.46s / 总长 3s"
+  },
+  {
+    "name": "Web Audio 频谱分析",
+    "ok": true,
+    "detail": "频域能量=343 时域能量=1026"
+  },
+  {
+    "name": "频谱 canvas 已按 DPR 分配",
+    "ok": true,
+    "detail": "1048x38"
+  },
+  {
+    "name": "URL 探测通道可调用",
+    "ok": true,
+    "detail": "ok=false net::ERR_FILE_NOT_FOUND"
+  },
+  {
+    "name": "主进程 appInfo",
+    "ok": true,
+    "detail": "v33.4.11 electron=33.4.11 nativeBlur=true"
+  },
+  {
+    "name": "原生亚克力绑定已加载",
+    "ok": true,
+    "detail": "nativeBlur=true"
+  },
+  {
+    "name": "窗口置顶开关生效（OS 层 WS_EX_TOPMOST）",
+    "ok": true,
+    "detail": "before=false -> after=true"
+  },
+  {
+    "name": "置顶接口返回真实状态",
+    "ok": true,
+    "detail": "返回 true"
+  },
+  {
+    "name": "置顶可正确关闭",
+    "ok": true,
+    "detail": "关闭后 topmost=false"
+  },
+  {
+    "name": "截图导出",
+    "ok": true,
+    "detail": "D:\\Test\\AI\\shots\\app-verified.png (919 KB)"
+  }
+]

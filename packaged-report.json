@@ -1,0 +1,102 @@
+[
+  {
+    "name": "打包 exe 启动",
+    "ok": true,
+    "detail": "pid=11516"
+  },
+  {
+    "name": "远程调试端口可连接",
+    "ok": true,
+    "detail": "file:///C:/Users/Administrator/AppData/Local/Temp/AuroraPlay"
+  },
+  {
+    "name": "preload API（打包后）",
+    "ok": true,
+    "detail": "30 个方法"
+  },
+  {
+    "name": "标题栏 + 窗口按钮",
+    "ok": true,
+    "detail": "3 个"
+  },
+  {
+    "name": "Win11 图标按钮",
+    "ok": true,
+    "detail": "9 个"
+  },
+  {
+    "name": "URL 导入栏",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "播放列表",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "进度/音量滑块",
+    "ok": true,
+    "detail": "2 个"
+  },
+  {
+    "name": "频谱画布",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "渲染文案",
+    "ok": true,
+    "detail": "Aurora Player | 未在播放 | 检测 | 导入链接 | 导入音乐文件 | 导入整个文件夹 | 也可以直接把文件 / 文件夹拖进窗口 | 网络电台示"
+  },
+  {
+    "name": "打包后亚克力生效",
+    "ok": true,
+    "detail": "backdrop=3 (3=Acrylic)"
+  },
+  {
+    "name": "打包后 Win11 圆角",
+    "ok": true,
+    "detail": "corner=2 (2=ROUND)"
+  },
+  {
+    "name": "打包后深色标题栏",
+    "ok": true,
+    "detail": "dark=1"
+  },
+  {
+    "name": "原生 koffi 在打包环境可用",
+    "ok": true,
+    "detail": "nativeBlur=true"
+  },
+  {
+    "name": "应用版本",
+    "ok": true,
+    "detail": "v1.0.0 electron=33.4.11"
+  },
+  {
+    "name": "打包后音乐库可读取",
+    "ok": true,
+    "detail": "dir=C:\\Users\\Administrator\\Music tracks=3 copy=true"
+  },
+  {
+    "name": "打包后音乐库目录存在",
+    "ok": true,
+    "detail": "C:\\Users\\Administrator\\Music"
+  },
+  {
+    "name": "打包后音频解码播放",
+    "ok": true,
+    "detail": "0.36s / 2s"
+  },
+  {
+    "name": "打包后频谱分析",
+    "ok": true,
+    "detail": "能量=343"
+  },
+  {
+    "name": "打包产物截图",
+    "ok": true,
+    "detail": "D:\\Test\\AI\\shots\\packaged-app.png (927 KB)"
+  }
+]
